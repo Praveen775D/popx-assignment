@@ -1,3 +1,9 @@
+import MobileContainer from "../components/MobileContainer";
+
 export default function Login() {
-  return <h1>Login Page</h1>;
+  return (
+    <MobileContainer>
+      <h1>Login Page</h1>
+    </MobileContainer>
+  );
 }

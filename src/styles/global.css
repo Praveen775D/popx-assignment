@@ -1,5 +1,25 @@
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f8f9;
   font-family: Arial, sans-serif;
+}
+
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.mobile-container {
+  width: 375px;
+  min-height: 812px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  position: relative;
 }
