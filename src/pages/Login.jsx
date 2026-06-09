@@ -10,14 +10,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    const user = JSON.parse(
-      localStorage.getItem("user")
-    );
+    const storedUser = localStorage.getItem("user");
 
-    if (!user) {
-      alert("No registered user found");
+    if (!storedUser) {
+      alert("Please register first");
       return;
     }
+
+    const user = JSON.parse(storedUser);
 
     if (!email.trim()) {
       alert("Email is required");
@@ -29,9 +29,12 @@ export default function Login() {
       return;
     }
 
+    const enteredEmail = email.trim().toLowerCase();
+    const storedEmail = user.email.trim().toLowerCase();
+
     if (
-      user.email === email &&
-      user.password === password
+      enteredEmail === storedEmail &&
+      password === user.password
     ) {
       navigate("/account");
     } else {
@@ -58,9 +61,7 @@ export default function Login() {
             type="email"
             placeholder="Enter email address"
             value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -71,9 +72,7 @@ export default function Login() {
             type="password"
             placeholder="Enter password"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
