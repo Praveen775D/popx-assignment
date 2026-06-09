@@ -1,7 +1,26 @@
+import { useEffect, useState } from "react";
 import MobileContainer from "../components/MobileContainer";
 import "../styles/account.css";
 
 export default function Account() {
+  const [user, setUser] = useState({
+    fullName: "Marry Doe",
+    email: "Marry@gmail.com",
+  });
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      const data = JSON.parse(storedUser);
+
+      setUser({
+        fullName: data.fullName || "Marry Doe",
+        email: data.email || "Marry@gmail.com",
+      });
+    }
+  }, []);
+
   return (
     <MobileContainer>
       <div className="account-header">
@@ -10,19 +29,26 @@ export default function Account() {
 
       <div className="account-body">
         <div className="profile-section">
-          <img
-            src="https://i.pravatar.cc/100"
-            alt="profile"
-          />
+          <div className="profile-image-wrapper">
+            <img
+              src="https://i.pravatar.cc/150?img=5"
+              alt="Profile"
+              className="profile-image"
+            />
 
-          <div>
-            <div className="profile-name">
-              Marry Doe
+            <div className="camera-icon">
+              📷
             </div>
+          </div>
 
-            <div className="profile-email">
-              Marry@example.com
-            </div>
+          <div className="profile-info">
+            <h3 className="profile-name">
+              {user.fullName}
+            </h3>
+
+            <p className="profile-email">
+              {user.email}
+            </p>
           </div>
         </div>
 
